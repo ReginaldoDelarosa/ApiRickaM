@@ -59,59 +59,6 @@ function getCharactersByName(name, done) {
         console.log(data);
       });
   }
-
-  function populateDropdown(characters) {
-
-    select.appendChild(optionTodos);
-
-    characters.forEach(character => {
-      const option = document.createElement("option");
-      option.value = character.name;
-      option.textContent = character.name;
-    
-      option.addEventListener("click", event => {
-        event.preventDefault();
-        getCharactersByName(character.name, data => {
-          clearCharacters();
-          data.results.forEach(personaje => {
-            const article = document.createRange().createContextualFragment(
-              `
-              <article>
-                <div class="image-container">
-                  <img src="${personaje.image}" alt="Personajes">
-                </div>
-                <h2>${personaje.name}</h2>
-                <span>${personaje.status}</span>
-              </article>
-              `
-            );
-            const main = document.querySelector("main");
-            main.append(article);
-          });
-        });
-      });
-    
-      select.appendChild(option);
-    });
-  }
-  
-  /*fetch("https://rickandmortyapi.com/api/character")
-    .then((response) => response.json())
-    .then((data) => {
-      const characters = data.results;
-      populateSelect(characters);
-    });*/
-  
-  function getCharactersByName(name, done) {
-    const result = fetch(
-      `https://rickandmortyapi.com/api/character/?name=${name}`
-    );
-    result
-      .then((response) => response.json())
-      .then((data) => {
-        done(data);
-      });
-  }
   
 // Creamos el select y el primer option fuera de la función
 const select = document.getElementById("select-filtrado");
