@@ -61,8 +61,9 @@ function getCharactersByName(name, done) {
   }
 
   function populateDropdown(characters) {
-    const select = document.getElementById("filtrado");
-    
+
+    select.appendChild(optionTodos);
+
     characters.forEach(character => {
       const option = document.createElement("option");
       option.value = character.name;
